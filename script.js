@@ -45,6 +45,12 @@ function visibility(){
     lastScroll = currentscroll;
 }
 
+function updatecontent(){
+    const inputext = document.getElementById('input-text').value;
+    const displayarea = document.getElementById('display-area');
+    displayarea.textContent = inputext
+}
+
 window.addEventListener("scroll", () => {
     skillsefect();
     visibility();
