@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio</title>
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <div class="content-header">
+            <header>
+                <div class="logo">
+                    <a href="#">LF</a>
+                </div>
+                <clic id="clic">
+                    <ul>
+                        <li><a href="#aboutme" onclick="selec()">ABOUT ME</a></li>
+                        <li><a href="#Skills" onclick="selec()">SKILLS</a></li>
+                        <li><a href="#contact" onclick="selec()">CONTACT</a></li>
+                    </ul>
+                </clic>
+                <div class="clic-responsive" onclick="mostrarOcultarMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </header>
+        </div>
+        <div class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Lucas Fuentes</h1>
+                <p class="subtitle">Programmer</p>
+                <div class="social-links">
+                    <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d= "M9 18c-4.51 2-5-2-7-2"/></svg>
+                    </a>
+                    <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect width="4" height="12" x="2" y="9"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    </a>
+                    <a href="mailto:lbfuentes@miuandes.cl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <section id="aboutme" class="aboutme">
+            <div class="aboutme-overlay"></div>
+            <div class="aboutme-section">
+                <h2>About me</h2>
+                <div class="aboutme-content">
+                    <p><span>Im Lucas Fuentes.</span> I'm a fourth-year student in civil engineering in computer science at the Universidad de los Andes. 
+                        I have experience in languages such as python, javascript, sql, and c.
+                        Now I'm up for the challenge of learning Ruby.</p>
+                <img src="nice.jpg" alt="Foto de mi" class="me-photo" />
+                </div>
+                    <div class="col">
+                        <h3>Interests</h3>
+                        <div class="content-interest">
+                            <div class="interest">
+                                <i class="fa-solid fa-gamepad"></i>
+                                <span>GAMES</span>
+                            </div>
+                            <div class="interest">
+                                <i class="fa-solid fa-headphones"></i>
+                                <span>MUSIC</span>
+                            </div>
+                            <div class="interest">
+                                <i class="fa-solid fa-plane"></i>
+                                <span>TRAVEL</span>
+                            </div>
+                            <div class="interest">
+                                <i class="fa-brands fa-apple"></i>
+                                <span>TECNOLOGY</span>
+                            </div>
+                            <div class="interest">
+                                <i class="fa-solid fa-futbol"></i>
+                                <span>SPORTS</span>
+                            </div>
+                            <div class="interest">
+                                <i class="fa-solid fa-car"></i>
+                                <span>CARS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="Skills" id="Skills">
+            <div class="content-section">
+                <div class="Skills-overlay"></div>
+                <h2>Skills</h2>
+                <div class="fila">
+                    <div class="col">
+                        <div class="skill">
+                            <span>Python</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>70%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>JavaScript</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>HTMLCSS</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>80%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>C</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>70%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="skill">
+                            <span>Git</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>50%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>Excel</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>70%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>SQL</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>80%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>Ruby</span>
+                            <div class="barra-skill">
+                                <div class="progress">
+                                    <span>10%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contact" id="contact">
+        <div class="contact">
+            <div class="contact-overlay">
+                <div class="contact-section">
+                    <h3>Contact</h3>
+                        <p>If you want to contact me, I suggest you write to me on any of my platforms.</p>
+                </div>
+            </div>
+        </div>
+        </section>
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                    <path d= "M9 18c-4.51 2-5-2-7-2"/></svg>
+                </a>
+                <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+                </a>
+                <a href="mailto:lbfuentes@miuandes.cl">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                </a>
+            </div>
+            <p>© 2025 Lucas Fuentes</p>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
