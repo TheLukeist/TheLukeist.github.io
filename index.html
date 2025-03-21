@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Portfolio</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="index.css" />
     </head>
     <body>
@@ -12,178 +13,196 @@
                 <div class="logo">
                     <a href="#">LF</a>
                 </div>
-                <clic id="clic">
-                    <ul>
-                        <li><a href="#aboutme" onclick="selec()">ABOUT ME</a></li>
-                        <li><a href="#Skills" onclick="selec()">SKILLS</a></li>
-                        <li><a href="#contact" onclick="selec()">CONTACT</a></li>
-                    </ul>
-                </clic>
-                <div class="clic-responsive" onclick="mostrarOcultarMenu()">
+                <nav id="clic">
+                    <a href="#aboutme" onclick="hideMenu()">ABOUT ME</a>
+                    <a href="#Skills" onclick="hideMenu()">SKILLS</a>
+                    <a href="#news" onclick="hideMenu()">NEWS</a>
+                    <a href="#contact" onclick="hideMenu()">CONTACT</a>
+                </nav>
+                <div class="clic-responsive" onclick="toggleMenu()">
                     <i class="fa-solid fa-bars"></i>
                 </div>
             </header>
         </div>
-        <div class="hero">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>Lucas Fuentes</h1>
-                <p class="subtitle">Programmer</p>
-                <div class="social-links">
-                    <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:lbfuentes@miuandes.cl">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <section id="aboutme" class="aboutme">
-            <div class="aboutme-overlay"></div>
-            <div class="aboutme-section">
-                <h2>About me</h2>
-                <div class="aboutme-content">
-                    <p><span>Im Lucas Fuentes.</span> I'm a fourth-year student in civil engineering in computer science at the Universidad de los Andes. 
-                        I have experience in languages such as python, javascript, sql, and c.
-                        Now I'm up for the challenge of learning Ruby.</p>
-                <img src="nice.jpg" alt="Foto de mi" class="me-photo" />
-                </div>
-                    <div class="col">
-                        <h3>Interests</h3>
-                        <div class="content-interest">
-                            <div class="interest">
-                                <i class="fa-solid fa-gamepad"></i>
-                                <span>GAMES</span>
-                            </div>
-                            <div class="interest">
-                                <i class="fa-solid fa-headphones"></i>
-                                <span>MUSIC</span>
-                            </div>
-                            <div class="interest">
-                                <i class="fa-solid fa-plane"></i>
-                                <span>TRAVEL</span>
-                            </div>
-                            <div class="interest">
-                                <i class="fa-brands fa-apple"></i>
-                                <span>TECNOLOGY</span>
-                            </div>
-                            <div class="interest">
-                                <i class="fa-solid fa-futbol"></i>
-                                <span>SPORTS</span>
-                            </div>
-                            <div class="interest">
-                                <i class="fa-solid fa-car"></i>
-                                <span>CARS</span>
-                            </div>
-                        </div>
+
+        <main>
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Lucas Fuentes</h1>
+                    <p class="subtitle">Programmer</p>
+                    <div class="social-links">
+                        <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:lbfuentes@miuandes.cl">
+                            <i class="fas fa-envelope"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="Skills" id="Skills">
-            <div class="content-section">
-                <div class="Skills-overlay"></div>
-                <h3>Skills</h3>
-                <div class="fila">
-                    <div class="col">
-                        <div class="skill">
-                            <span>Python</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>70%</span>
-                                </div>
-                            </div>
+
+            <section id="aboutme" class="aboutme">
+                <div class="aboutme-section">
+                    <h2>About me</h2>
+                    <div class="aboutme-content">
+                        <p><span>Im Lucas Fuentes.</span> I'm a fourth-year student in civil engineering in computer science at the Universidad de los Andes. 
+                            I have experience in languages such as Python, Javascript, SQL, and C.
+                            Now I'm up for the challenge of learning Ruby.</p>
+                        <img src="nice.jpg" alt="Foto de mi" class="me-photo" />
+                    </div>
+                    <h2>Interests</h2>
+                    <div class="content-interest">
+                        <div class="interest">
+                            <i class="fa-solid fa-gamepad"></i>
+                            <span>GAMES</span>
                         </div>
-                        <div class="skill">
-                            <span>JavaScript</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>75%</span>
-                                </div>
-                            </div>
+                        <div class="interest">
+                            <i class="fa-solid fa-headphones"></i>
+                            <span>MUSIC</span>
                         </div>
-                        <div class="skill">
-                            <span>HTMLCSS</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>80%</span>
-                                </div>
-                            </div>
+                        <div class="interest">
+                            <i class="fa-solid fa-plane"></i>
+                            <span>TRAVEL</span>
                         </div>
-                        <div class="skill">
-                            <span>C</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>70%</span>
-                                </div>
-                            </div>
+                        <div class="interest">
+                            <i class="fa-brands fa-apple"></i>
+                            <span>TECNOLOGY</span>
+                        </div>
+                        <div class="interest">
+                            <i class="fa-solid fa-futbol"></i>
+                            <span>SPORTS</span>
+                        </div>
+                        <div class="interest">
+                            <i class="fa-solid fa-car"></i>
+                            <span>CARS</span>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="skill">
-                            <span>Git</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>50%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span>Excel</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>70%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span>SQL</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>80%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span>Ruby</span>
-                            <div class="barra-skill">
-                                <div class="progress">
-                                    <span>10%</span>
+                </div>
+            </section>
+
+            <section class="Skills" id="Skills">
+                <div class="content-section">
+                    <h3>Skills</h3>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover skills-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Skill</th>
+                                    <th scope="col">Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Python</td>
+                                    <td>Intermediate</td>
+                                </tr>
+                                <tr>
+                                    <td>JavaScript</td>
+                                    <td>Intermediate</td>
+                                </tr>
+                                <tr>
+                                    <td>HTML/CSS</td>
+                                    <td>Basic</td>
+                                </tr>
+                                <tr>
+                                    <td>Git</td>
+                                    <td>Basic</td>
+                                </tr>
+                                <tr>
+                                    <td>Excel</td>
+                                    <td>Basic</td>
+                                </tr>
+                                <tr>
+                                    <td>SQL</td>
+                                    <td>Intermediate</td>
+                                </tr>
+                                <tr>
+                                    <td>Ruby</td>
+                                    <td>Basic</td>
+                                </tr>
+                                <tr>
+                                    <td>English</td>
+                                    <td>B2</td>
+                                </tr>
+                                <tr>
+                                    <td>Spanish</td>
+                                    <td>Native</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section class="news-section py-5" id="news">
+                <div class="container"> 
+                    <div class="row">
+                        <div class="col-12 text-center mb-4">
+                            <h2 class="gradient-text">Latest News</h2>
+                            <p>The most recent news</p>
+                            <div class="category-filter mb-4"> <!--botones -->
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-primary active" data-category="technology">Technology</button>
+                                    <button type="button" class="btn btn-primary" data-category="business">Business</button>
+                                    <button type="button" class="btn btn-primary" data-category="science">Science</button>
+                                    <button type="button" class="btn btn-primary" data-category="health">Health</button>
+                                    <button type="button" class="btn btn-primary" data-category="sports">Sports</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row" id="news-container">
+                        <div class="col-12 text-center">
+                            <div class="spinner-border text-primary" role="status"> <!--spinner--> 
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <nav aria-label="News navigation"> <!--paginacion-->
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section class="contact" id="contact">
-        <div class="contact">
-            <div class="contact-overlay">
+            </section>
+
+            <section class="contact" id="contact">
                 <div class="contact-section">
                     <h4>Contact</h4>
-                        <p>If you want to contact me, I suggest you write to me on any of my platforms.</p>
+                    <p>If you want to contact me, I suggest you write to me on any of my platforms.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:lbfuentes@miuandes.cl">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        </section>
+            </section>
+        </main>
+
         <footer>
-            <div class="social-links">
-                <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:lbfuentes@miuandes.cl">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
             <p>© 2025 Lucas Fuentes</p>
         </footer>
+
         <section class="dynamic" id="dynamic">
             <div class="dynamic-content">
                 <input type="text" id="input-text" placeholder="Enter your text">
@@ -191,6 +210,8 @@
                 <div id="display-area"></div>
             </div>
         </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="script.js"></script>
     </body>
 </html>
