@@ -20,6 +20,7 @@ body {
   position: relative;
 }
 
+
 .content-header {
   position: fixed;
   width: 100%;
@@ -513,6 +514,16 @@ footer p {
 }
 
 @media (max-width: 480px) {
+  .hero {
+    min-height: 100vh;
+    padding-top: 120px;
+    margin-top: 60px;
+  }
+
+  .hero-content {
+    padding-top: 2rem;
+  }
+
   h1 {
     font-size: clamp(2rem, 8vw, 3rem)
   }
@@ -540,5 +551,71 @@ footer p {
   }
   .news-card .news-img {
     height: 120px;
+  }
+  .content-header header {
+    padding: 10px 15px;
+  }
+
+  .content-header header .logo a {
+    font-size: 28px; 
+  }
+
+  nav.responsive {
+    top: 60px; 
+    background: rgba(31, 41, 55, 0.98); 
+    padding: 0.5rem;
+  }
+
+  nav.responsive a {
+    padding: 12px 0; 
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.1);
+  }
+
+  .clic-responsive {
+    padding: 8px;
+  }
+
+  .news-section {
+    padding: 1rem 0.5rem; 
+  }
+
+  .category-filter .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+  }
+
+  .category-filter .btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  .news-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .news-card .news-img {
+    height: 160px;
+  }
+
+  .news-card .card-title {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .news-card .card-text {
+    font-size: 0.9rem;
+  }
+
+  .pagination {
+    gap: 0.25rem;
+  }
+
+  .pagination .page-link {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.9rem;
   }
 }
