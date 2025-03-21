@@ -134,7 +134,6 @@ function loadNews(category = 'technology') {
             newsContainer.innerHTML = `
                 <div class="col-12 text-center">
                     <p>Error loading news. Please try again later.</p>
-                    <p>Note: You need to register at NewsAPI and replace the API key in script.js</p>
                 </div>
             `;
         });
