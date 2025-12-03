@@ -1,177 +1,105 @@
+// Sidebar menu state
 let menuVisible = false;
-const clic = document.getElementById("clic");
-const header = document.querySelector("header");
-let lastScroll = window.scrollY;
-let scrollstop;
-let currentCategory = 'technology';
-let currentPage = 1;
-const articlesPerPage = 6;
-let newsData = [];
 
+// Toggle menu function for mobile
 function toggleMenu() {
-    clic.classList.toggle("responsive");
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("active");
     menuVisible = !menuVisible;
 }
 
+// Hide menu function
 function hideMenu() {
-    clic.classList.remove("responsive");
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) {
+        sidebar.classList.remove("active");
+    }
     menuVisible = false;
 }
 
-function visibility(){
-    const currentscroll = window.scrollY;
-    clearTimeout(scrollstop);
-
-    if (Math.abs(currentscroll - lastScroll) > 5){
-        header.classList.add("content-header-hidden");
-    }
-    scrollstop = setTimeout(() => {
-        header.classList.remove("content-header-hidden");        
-    }, 150);
-    
-    lastScroll = currentscroll;
-}
-
-function updatecontent(){
-    const inputext = document.getElementById('input-text').value;
-    const displayarea = document.getElementById('display-area');
-    displayarea.textContent = inputext;
-}
-
-function createArticleCard(article) {
-    const imageUrl = article.urlToImage || 'https://via.placeholder.com/300x200?text=No+Image';
-    const title = article.title || 'No title';
-    const source = article.source.name || 'Unknown source';
-    const description = article.description || 'No description available.';
-    const url = article.url || '#';
-    
-    return `
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="news-card">
-                <img src="${imageUrl}" alt="${title}" class="news-img">
-                <h5 class="card-title">${title}</h5>
-                <p class="source mb-2">${source}</p>
-                <p class="card-text">${description}</p>
-                <a href="${url}" target="_blank" class="btn btn-primary btn-sm mt-2">Read more</a>
-            </div>
-        </div>
-    `;
-}
-
-function displayNews() {
-    const newsContainer = document.getElementById('news-container');
-    const start = (currentPage - 1) * articlesPerPage;
-    const end = start + articlesPerPage;
-    const currentArticles = newsData.slice(start, end);
-    
-    newsContainer.innerHTML = '';
-    currentArticles.forEach(article => {
-        newsContainer.innerHTML += createArticleCard(article);
-    });
-
-    updatePagination();
-}
-
-function updatePagination() {
-    const totalPages = Math.ceil(newsData.length / articlesPerPage);
-    const paginationContainer = document.querySelector('.pagination');
-    let paginationHTML = `
-        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-            <a class="page-link" href="#" data-page="prev">Previous</a>
-        </li>
-    `;
-
-    for (let i = 1; i <= totalPages; i++) {
-        paginationHTML += `
-            <li class="page-item ${currentPage === i ? 'active' : ''}">
-                <a class="page-link" href="#" data-page="${i}">${i}</a>
-            </li>
-        `;
-    }
-
-    paginationHTML += `
-        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-            <a class="page-link" href="#" data-page="next">Next</a>
-        </li>
-    `;
-
-    paginationContainer.innerHTML = paginationHTML;
-}
-
-function loadNews(category = 'technology') {
-    const apiKey = '85f94c52bc0e4f3c81b7168f8c21d4f1';
-    const url = `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=${apiKey}`;
-    const newsContainer = document.getElementById('news-container');
-    
-    newsContainer.innerHTML = `
-        <div class="col-12 text-center">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    `;
-    
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('Error in API response');
-            return response.json();
-        })
-        .then(data => {
-            if (data.articles?.length > 0) {
-                newsData = data.articles;
-                currentPage = 1;
-                displayNews();
-            } else {
-                newsContainer.innerHTML = `
-                    <div class="col-12 text-center">
-                        <p>No news articles available for this category.</p>
-                    </div>
-                `;
-            }
-        })
-        .catch(error => {
-            console.error('Error loading news:', error);
-            newsContainer.innerHTML = `
-                <div class="col-12 text-center">
-                    <p>Error loading news. Please try again later.</p>
-                </div>
-            `;
-        });
-}
-
+// Smooth scroll behavior
 document.addEventListener('DOMContentLoaded', () => {
-    loadNews();
+    // Add smooth scroll to all links
+    const links = document.querySelectorAll('a[href^="#"]');
 
-    document.querySelectorAll('.category-filter .btn').forEach(button => {
-        button.addEventListener('click', function() {
-            document.querySelectorAll('.category-filter .btn')
-                .forEach(btn => btn.classList.remove('active'));
-            
-            this.classList.add('active');
-            currentCategory = this.dataset.category;
-            loadNews(currentCategory);
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+
+            // Don't prevent default for #home, just let it scroll to top
+            if (href === '#home' || href === '#') {
+                return;
+            }
+
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Close mobile menu if open
+                hideMenu();
+            }
         });
     });
 
-    document.querySelector('.pagination').addEventListener('click', function(e) {
-        e.preventDefault();
-        if (!e.target.classList.contains('page-link')) return;
-        
-        const page = e.target.dataset.page;
-        const totalPages = Math.ceil(newsData.length / articlesPerPage);
-        
-        if (page === 'prev' && currentPage > 1) {
-            currentPage--;
-        } else if (page === 'next' && currentPage < totalPages) {
-            currentPage++;
-        } else if (page !== 'prev' && page !== 'next') {
-            currentPage = parseInt(page);
-        }
-        
-        displayNews();
+    // Add scroll reveal animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(section);
+    });
+
+    // Active navigation highlight on scroll
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
     });
 });
 
-window.addEventListener("scroll", () => {
-    visibility();
+// Add parallax effect to hero section
+window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const scrolled = window.scrollY;
+        const parallax = scrolled * 0.5;
+        hero.style.transform = `translateY(${parallax}px)`;
+    }
 });
