@@ -1,9 +1,10 @@
 /* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
 /* CSS Variables */
 :root {
+  /* Dark Theme (Default) */
   --bg-primary: #0a0a0b;
   --bg-secondary: #1a1a1b;
   --accent-primary: #7dd3fc;
@@ -13,6 +14,17 @@
   --text-muted: #6b7280;
   --sidebar-width: 80px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light / Beige Theme */
+[data-theme="light"] {
+  --bg-primary: #EAE7D0;
+  --bg-secondary: #DEDBC5;
+  --accent-primary: #1A1A1A;
+  --accent-secondary: #404040;
+  --text-primary: #1A1A1A;
+  --text-secondary: #404040;
+  --text-muted: #666666;
 }
 
 /* Reset & Base Styles */
@@ -215,6 +227,95 @@ body {
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.8;
+}
+
+/* Big Typography Hero Style */
+.hero-big-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  min-height: 100vh;
+  align-items: center;
+  padding: 0 4rem;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-big-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-self: end;
+  padding-bottom: 6rem;
+  z-index: 2;
+}
+
+.hero-big-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.hero-big-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 320px;
+}
+
+.hero-big-desc a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero-big-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-big-link {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4rem, 13vw, 11rem);
+  line-height: 0.85;
+  color: var(--text-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0.9;
+  width: fit-content;
+  letter-spacing: -0.03em;
+}
+
+.hero-big-link:hover {
+  font-style: italic;
+  transform: translateX(30px);
+  opacity: 1;
+  color: var(--accent-primary);
+}
+
+@media (max-width: 900px) {
+  .hero-big-layout {
+    grid-template-columns: 1fr;
+    padding: 6rem 2rem 2rem;
+    align-content: center;
+  }
+  
+  .hero-big-info {
+    order: 2;
+    padding-bottom: 0;
+    align-self: flex-start;
+  }
+  
+  .hero-big-menu {
+    order: 1;
+    margin-bottom: 4rem;
+  }
 }
 
 /* Work Section */

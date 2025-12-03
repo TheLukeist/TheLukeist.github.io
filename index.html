@@ -14,12 +14,15 @@
                     <a href="#home">LF</a>
                 </div>
                 <nav class="sidebar-nav">
-                    <a href="#work" onclick="hideMenu()">WORK</a>
+                    <a href="#work" onclick="hideMenu()">PROJECTS</a>
                     <a href="#aboutme" onclick="hideMenu()">ABOUT</a>
                     <a href="#skills" onclick="hideMenu()">SKILLS</a>
                     <a href="#contact" onclick="hideMenu()">CONTACT</a>
                 </nav>
                 <div class="sidebar-social">
+                    <button onclick="toggleTheme()" class="theme-toggle" title="Toggle Theme" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size: 1.2rem; padding: 0.5rem;">
+                        <i class="fas fa-adjust"></i>
+                    </button>
                     <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer" title="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
@@ -39,20 +42,28 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Hero Section -->
-            <section class="hero" id="home">
-                <div class="hero-content">
-                    <h1>Lucas Fuentes</h1>
-                    <p class="subtitle">Programmer & Developer</p>
-                    <p class="hero-description">
-                        Building digital experiences with clean code and creative solutions
-                    </p>
+            <section class="hero-big-layout" id="home">
+                <div class="hero-big-info">
+                    <div>
+                        <h2 class="hero-big-name">LUCAS FUENTES</h2>
+                        <p class="hero-big-desc">
+                            Programmer & Developer.<br>
+                            Building digital experiences with clean code and creative solutions.
+                        </p>
+                    </div>
+                </div>
+                <div class="hero-big-menu">
+                    <a href="#work" class="hero-big-link">Projects</a>
+                    <a href="#aboutme" class="hero-big-link">About</a>
+                    <a href="#skills" class="hero-big-link">Skills</a>
+                    <a href="#contact" class="hero-big-link">Contact</a>
                 </div>
             </section>
 
             <!-- Work Section -->
             <section class="work-section" id="work">
                 <div class="section-container">
-                    <h2 class="section-title">Selected Work</h2>
+                    <h2 class="section-title">Selected Projects</h2>
                     <div class="projects-grid">
                         <div class="project-card">
                             <div class="project-image">

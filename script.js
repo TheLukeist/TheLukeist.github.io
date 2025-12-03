@@ -96,10 +96,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add parallax effect to hero section
 window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
+    const hero = document.querySelector('.hero') || document.querySelector('.hero-big-layout');
     if (hero) {
         const scrolled = window.scrollY;
         const parallax = scrolled * 0.5;
         hero.style.transform = `translateY(${parallax}px)`;
+    }
+});
+
+// Theme Toggle Logic
+function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+// Initialize Theme on Load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
     }
 });
