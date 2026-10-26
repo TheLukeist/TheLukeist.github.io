@@ -1,237 +1,321 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Lucas Fuentes - Portfolio</title>
-        <link rel="stylesheet" href="index.css" />
-    </head>
-    <body>
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-content">
-                <div class="sidebar-top">
-                    <div class="sidebar-social">
-                        <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <button onclick="toggleTheme()" class="theme-toggle" title="Toggle Theme">
-                            <i class="fas fa-adjust"></i>
-                        </button>
-                    </div>
-                    <div class="sidebar-line"></div>
-                </div>
-                
-                <div class="sidebar-copyright">
-                    <span>&copy; 2025</span>
-                </div>
-            </div>
-            <div class="mobile-toggle" onclick="toggleMenu()">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </aside>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portafolio de Lucas Fuentes Alarcón, software engineer en formación en la Universidad de los Andes.">
+<title>Lucas Fuentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500&display=swap">
+<style>
+:root {
+  --bg: #101010;
+  --fg: #f2f2f2;
+  --dim: rgba(242, 242, 242, 0.5);
+  --mid: rgba(242, 242, 242, 0.8);
+  --line: rgba(255, 255, 255, 0.1);
+  --card-a: #242424;
+  --card-b: #191919;
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Gloock", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Hero Section -->
-            <section class="hero-big-layout" id="home">
-                <div class="hero-big-info">
-                    <div>
-                        <h2 class="hero-big-name">LUCAS FUENTES</h2>
-                        <p class="hero-big-desc">
-                            Programmer & Developer.<br>
-                            Building digital experiences with clean code and creative solutions.
-                        </p>
-                    </div>
-                </div>
-                <div class="hero-big-menu">
-                    <a href="#work" class="hero-big-link">WORK</a>
-                    <a href="#aboutme" class="hero-big-link">ABOUT</a>
-                    <a href="#skills" class="hero-big-link">SKILLS</a>
-                    <a href="#contact" class="hero-big-link">CONTACT</a>
-                </div>
-            </section>
+.page { background: radial-gradient(1200px 700px at 50% -10%, #262626, transparent 70%); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.head { position: fixed; z-index: 10; top: 0; left: 0; right: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: calc(28px + env(safe-area-inset-top, 0px)) max(48px, env(safe-area-inset-right, 0px)) 20px max(48px, env(safe-area-inset-left, 0px)); background: linear-gradient(var(--bg) 40%, transparent); }
+.name b { display: block; font-size: 20px; line-height: 20px; font-weight: 500; letter-spacing: -0.02em; }
+.name span { display: block; margin-top: 6px; font-size: 12px; line-height: 12px; letter-spacing: 0.2px; color: var(--dim); }
+.tabs { display: flex; padding: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+.tabs button { position: relative; padding: 10px 22px; border-radius: 999px; font-size: 14px; font-weight: 500; letter-spacing: 0.2px; transition: background-color 0.3s; }
+.tabs button[aria-selected="true"] { background: rgba(255, 255, 255, 0.09); }
+.tabs button[aria-selected="true"]::before { content: ""; position: absolute; top: -5px; left: 50%; width: 22px; height: 3px; margin-left: -11px; border-radius: 3px; background: var(--fg); box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.6); }
+.out { justify-self: end; display: flex; gap: 38px; font-size: 14px; font-weight: 500; letter-spacing: 0.2px; }
+.out a { text-decoration: none; transition: opacity 0.2s; }
+.out a:hover { opacity: 0.7; }
+.wrap { width: min(1044px, 100%); margin: 0 auto; }
 
-            <!-- Work Section -->
-            <section class="work-section" id="work">
-                <div class="section-container">
-                    <h2 class="section-title">Selected Projects</h2>
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80" alt="Project 1">
-                            </div>
-                            <div class="project-info">
-                                <h3>Web Application</h3>
-                                <p>Full-stack web application with modern technologies</p>
-                                <div class="project-tags">
-                                    <span>JavaScript</span>
-                                    <span>Python</span>
-                                    <span>SQL</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-image">
-                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80" alt="Project 2">
-                            </div>
-                            <div class="project-info">
-                                <h3>Data Analysis Tool</h3>
-                                <p>Python-based data visualization and analysis platform</p>
-                                <div class="project-tags">
-                                    <span>Python</span>
-                                    <span>Data Science</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-image">
-                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80" alt="Project 3">
-                            </div>
-                            <div class="project-info">
-                                <h3>API Development</h3>
-                                <p>RESTful API with authentication and database integration</p>
-                                <div class="project-tags">
-                                    <span>Ruby</span>
-                                    <span>SQL</span>
-                                    <span>API</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+.hero { margin-top: 160px; padding: 8px; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.12); background: linear-gradient(#1d1d1d, #131313); -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6); }
+.bar { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 22px; border-radius: 14px 14px 0 0; background: linear-gradient(90deg, #474747, #a4a4a4 50%, #474747); }
+.bar i, .chrome i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+.bar i:nth-child(2), .chrome i:nth-child(2) { background: #febc2e; }
+.bar i:nth-child(3), .chrome i:nth-child(3) { background: #28c840; }
+.bar span { margin-left: auto; font-size: 22px; font-weight: 300; color: rgba(255, 255, 255, 0.45); }
+.stage { padding: 100px 72px 60px; background: radial-gradient(800px 400px at 30% 20%, #262626, #141414); border-radius: 0 0 14px 14px; }
+.stage h1 { margin: 0; font-size: clamp(44px, 8.4vw, 96px); line-height: 0.9; font-weight: 500; letter-spacing: -0.023em; text-shadow: 0 0 28px rgba(255, 255, 255, 0.35); text-wrap: balance; }
+.it { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; background: linear-gradient(100deg, #fff 5%, #8d8d8d 55%, #e6e6e6 95%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.25)); padding-right: 0.06em; }
+.sub { margin: 72px 0 0 46%; font-size: 24px; line-height: 33.6px; font-weight: 500; }
+.sub span { display: block; font-weight: 400; color: var(--dim); }
+.down { display: block; width: 32px; margin: 90px auto 40px; color: var(--mid); }
 
-            <!-- About Section -->
-            <section class="about-section" id="aboutme">
-                <div class="section-container">
-                    <h2 class="section-title">About</h2>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p class="about-intro">
-                                I'm Lucas Fuentes, a fourth-year student in civil engineering in computer science at the Universidad de los Andes.
-                            </p>
-                            <p>
-                                With experience in Python, JavaScript, SQL, and C, I'm constantly exploring new technologies and currently diving into Ruby.
-                                I'm passionate about creating efficient solutions and learning through hands-on projects.
-                            </p>
-                            <div class="interests-list">
-                                <h3>Interests</h3>
-                                <div class="interest-tags">
-                                    <span><i class="fa-solid fa-gamepad"></i> Games</span>
-                                    <span><i class="fa-solid fa-headphones"></i> Music</span>
-                                    <span><i class="fa-solid fa-plane"></i> Travel</span>
-                                    <span><i class="fa-brands fa-apple"></i> Technology</span>
-                                    <span><i class="fa-solid fa-futbol"></i> Sports</span>
-                                    <span><i class="fa-solid fa-car"></i> Cars</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="about-image">
-                            <img src="nice.jpg" alt="Lucas Fuentes" class="profile-photo" />
-                        </div>
-                    </div>
-                </div>
-            </section>
+.work { display: grid; gap: 40px; margin-top: 40px; padding-bottom: 80px; }
+.stack { display: grid; gap: 40px; }
+.card { position: sticky; top: 110px; display: block; width: 100%; height: min(620px, 74vh); overflow: hidden; padding: 40px 40px 0; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(180deg, var(--card-a), var(--card-b)); text-align: left; box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5); }
+.card-top { display: flex; justify-content: space-between; gap: 24px; }
+.card h2 { margin: 0; font-size: 24px; line-height: 24px; font-weight: 500; letter-spacing: -0.01em; }
+.meta { margin: 10px 0 0; font-size: 16px; line-height: 20px; letter-spacing: 0.2px; color: var(--dim); }
+.meta b { font-weight: 500; color: var(--mid); }
+.arrow { flex: none; font-size: 22px; transition: transform 0.4s var(--ease); }
+.card:hover .arrow, .more button:hover .arrow { transform: translateX(6px); }
+.shot { width: 84%; margin: 36px auto 0; border-radius: 10px 10px 0 0; overflow: hidden; border: 1px solid var(--line); background: #1f1f1f; transition: transform 0.6s var(--ease); }
+.card:hover .shot { transform: translateY(-10px); }
+.chrome { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; background: #2a2a2a; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.chrome i { width: 8px; height: 8px; }
+.chrome span { margin-left: 12px; padding: 3px 40px 3px 10px; border-radius: 6px; background: #1c1c1c; font-size: 11px; color: rgba(242, 242, 242, 0.45); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shot img { width: 100%; aspect-ratio: 1280 / 800; object-fit: cover; object-position: top; background: #fff; }
+.tag { display: inline-block; margin-left: 10px; padding: 2px 8px; border-radius: 99px; border: 1px solid var(--line); font: 500 11px/16px var(--mono); color: var(--dim); vertical-align: 3px; }
+.more { padding: 12px 40px; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(180deg, #202020, #181818); }
+.more-k { margin: 16px 0 4px; font-size: 9px; line-height: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim); }
+.more button { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 24px; padding: 24px 0; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.more button:last-child { border-bottom: 0; }
+.more h3 { margin: 0; font-size: 20px; font-weight: 500; }
 
-            <!-- Skills Section -->
-            <section class="skills-section" id="skills">
-                <div class="section-container">
-                    <h2 class="section-title">Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>Programming Languages</h3>
-                            <div class="skill-list">
-                                <div class="skill-item">
-                                    <span class="skill-name">Python</span>
-                                    <span class="skill-level">Intermediate</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">JavaScript</span>
-                                    <span class="skill-level">Intermediate</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">SQL</span>
-                                    <span class="skill-level">Intermediate</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">C</span>
-                                    <span class="skill-level">Intermediate</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">Ruby</span>
-                                    <span class="skill-level">Basic</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Web Development</h3>
-                            <div class="skill-list">
-                                <div class="skill-item">
-                                    <span class="skill-name">HTML/CSS</span>
-                                    <span class="skill-level">Basic</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">Git</span>
-                                    <span class="skill-level">Basic</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Languages</h3>
-                            <div class="skill-list">
-                                <div class="skill-item">
-                                    <span class="skill-name">Spanish</span>
-                                    <span class="skill-level">Native</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">English</span>
-                                    <span class="skill-level">B2</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+.info { padding: 170px 0 80px; }
+.kicker { display: flex; align-items: center; gap: 8px; font-size: 9px; line-height: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; }
+.kicker::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--fg); }
+.info h2 { margin: 20px 0 56px; max-width: 900px; font-size: clamp(32px, 4.4vw, 52px); line-height: 1.05; font-weight: 500; letter-spacing: -0.02em; text-wrap: balance; }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 64px; }
+.cols h3 { margin: 0 0 12px; font-size: 24px; line-height: 1.3; font-weight: 500; }
+.cols p { margin: 0 0 12px; font-size: 16px; line-height: 1.55; letter-spacing: 0.2px; color: rgba(242, 242, 242, 0.6); }
+.u { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: var(--fg); }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; padding-block: 48px 120px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 16px; line-height: 24px; letter-spacing: 0.2px; }
+.foot nav { display: flex; gap: 72px; }
+.foot small { display: block; margin-bottom: 8px; font-size: 9px; line-height: 13px; letter-spacing: 1.5px; }
+.foot a, .foot button { display: block; text-decoration: none; font-weight: 500; }
+.foot p { margin: 0; text-align: right; }
+.foot p span { display: block; font-size: 12px; font-weight: 300; color: rgba(242, 242, 242, 0.6); }
 
-            <!-- Contact Section -->
-            <section class="contact-section" id="contact">
-                <div class="section-container">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <div class="contact-content">
-                        <p class="contact-text">
-                            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-                        </p>
-                        <div class="contact-links">
-                            <a href="mailto:lbfuentes@miuandes.cl" class="contact-link">
-                                <i class="fas fa-envelope"></i>
-                                <span>lbfuentes@miuandes.cl</span>
-                            </a>
-                            <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer" class="contact-link">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub</span>
-                            </a>
-                            <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer" class="contact-link">
-                                <i class="fab fa-linkedin"></i>
-                                <span>LinkedIn</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+.sheet { position: fixed; inset: 0; z-index: 60; display: grid; grid-template-rows: auto 1fr auto; gap: 20px; padding: calc(24px + env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px)); background: rgba(12, 12, 12, 0.95); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.sheet-top { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+.sheet h2 { margin: 0; font-size: 24px; font-weight: 500; letter-spacing: -0.01em; }
+.sheet .meta { margin-top: 6px; }
+.sheet-x { flex: none; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); font-size: 18px; }
+.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; min-height: 0; padding-bottom: 8px; }
+.rail img { height: 100%; width: auto; max-width: none; border-radius: 10px; scroll-snap-align: center; flex: none; background: #fff; }
+.readme { display: flex; flex-direction: column; gap: 14px; width: min(560px, 100%); padding: 40px; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(180deg, var(--card-a), var(--card-b)); flex: none; align-self: start; }
+.readme code { font: 500 12px/1 var(--mono); color: var(--dim); }
+.readme b { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; }
+.readme p { margin: 0; font-size: 16px; line-height: 1.5; color: rgba(242, 242, 242, 0.7); }
+.sheet-txt { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: end; }
+.sheet-txt p { margin: 0; max-width: 62ch; font-size: 16px; line-height: 1.5; color: rgba(242, 242, 242, 0.75); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { padding: 4px 10px; border-radius: 99px; background: rgba(255, 255, 255, 0.1); font: 500 12px/1.3 var(--mono); }
+.toast { position: fixed; z-index: 70; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); padding: 10px 16px; border-radius: 10px; background: #f2f2f2; color: #111; font: 500 13px/1.3 var(--mono); }
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p>© 2025 Lucas Fuentes. All rights reserved.</p>
-            </div>
-        </footer>
+@media (max-width: 1080px) { .sub { margin-left: 30%; } }
+@media (max-width: 760px) {
+  .head { grid-template-columns: 1fr auto; row-gap: 14px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .tabs { grid-row: 2; grid-column: 1 / 3; justify-self: center; }
+  .out { gap: 18px; }
+  .hero { margin-top: 150px; }
+  .stage { padding: 56px 22px 40px; }
+  .sub { margin: 40px 0 0; font-size: 18px; line-height: 26px; }
+  .card { position: relative; top: 0; height: auto; padding: 24px 20px 0; }
+  .card-top { gap: 12px; }
+  .shot { width: 100%; margin-top: 24px; }
+  .more { padding: 4px 20px; }
+  .cols { grid-template-columns: 1fr; }
+  .foot nav { gap: 48px; }
+  .foot p { text-align: left; }
+  .rail img { height: auto; width: 88vw; align-self: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="head">
+    <div class="name"><b>Lucas Fuentes</b><span>Software Engineer</span></div>
+    <div class="tabs" role="tablist" aria-label="Secciones">
+      <button type="button" role="tab" aria-selected="true" data-tab="work">Work</button>
+      <button type="button" role="tab" aria-selected="false" data-tab="info">Info</button>
+    </div>
+    <nav class="out" aria-label="Enlaces"><a href="https://github.com/TheLukeist">GitHub ↗</a><a href="https://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336">LinkedIn ↗</a></nav>
+  </header>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-        <script src="script.js"></script>
-    </body>
+  <main class="wrap" data-panel="work">
+    <section class="hero" aria-label="Presentación">
+      <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>+</span></div>
+      <div class="stage">
+        <h1>Construyo productos, sistemas &amp; <span class="it">historias.</span></h1>
+        <p class="sub">Software engineer en formación en UAndes.<span>Antes, practicante en eGenya.</span></p>
+        <svg class="down" viewBox="0 0 32 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M16 2v42M4 32l12 12 12-12"/></svg>
+      </div>
+    </section>
+    <section class="work" aria-label="Proyectos">
+      <div class="stack" data-cards></div>
+      <div class="more" data-more><p class="more-k">Más proyectos, sin capturas todavía</p></div>
+    </section>
+  </main>
+
+  <main class="wrap info" data-panel="info" hidden>
+    <span class="kicker">Sobre mí</span>
+    <h2>Me apasiona construir software que <span class="it">ayude a las personas.</span></h2>
+    <div class="cols">
+      <div><h3>Mi base: computación.</h3><p>Estudio Ingeniería Civil en Ciencias de la Computación en la Universidad de los Andes. Ahí me engancharon el producto web full-stack, la IA aplicada y los sistemas que se conectan con el mundo físico.</p></div>
+      <div><h3>Primera práctica.</h3><p>Entre diciembre de 2025 y febrero de 2026 fui Software Engineer Intern en eGenya: desarrollo, QA y seguimiento de bugs en proyectos reales.</p></div>
+      <div><h3>Enseñando.</h3><p>Desde marzo de 2025 soy ayudante en la UAndes, en ramos como Bases de Datos, Web Technology y Procesamiento Masivo de Datos.</p></div>
+      <div><h3>¿Qué sigue?</h3><p>Busco mi 2da práctica. Si tienes un proyecto interesante, <button type="button" class="u" data-copy>escríbeme</button>.</p></div>
+    </div>
+  </main>
+
+  <div class="wrap">
+    <footer class="foot">
+      <nav aria-label="Pie de página">
+        <div><small>MAIN</small><button type="button" data-tab="work">Work</button><button type="button" data-tab="info">Info</button></div>
+        <div><small>CONTACT</small><a href="https://github.com/TheLukeist">GitHub</a><a href="https://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336">LinkedIn</a><button type="button" data-copy>Email</button></div>
+      </nav>
+      <p>© 2026 Lucas Fuentes Alarcón.<span>Hecho a mano en Santiago · v14</span></p>
+    </footer>
+  </div>
+</div>
+
+<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" data-sheet hidden>
+  <div class="sheet-top"><div><h2 id="sheet-title" data-sheet-title></h2><p class="meta" data-sheet-meta></p></div><button type="button" class="sheet-x" data-sheet-close aria-label="Cerrar">✕</button></div>
+  <div class="rail" data-rail></div>
+  <div class="sheet-txt"><p data-sheet-sum></p><div class="chips" data-sheet-stack></div></div>
+</div>
+<div class="toast" role="status" data-toast hidden></div>
+
+<script>
+const caps = (key, n, kind = 'd') => Array.from({ length: n }, (_, i) => 'caps/' + key + '-' + kind + (i + 1) + '.jpg');
+/* shots: capturas en orden (la primera va en la tarjeta). year null = dato que falta. */
+const PROJECTS = [
+  { name: 'Portal de Ayudantías', year: '2026', org: 'UAndes', tab: 'Portal de Ayudantías — Iniciar sesión', summary: 'Postulación y selección de ayudantes de la FICA, con evaluación de candidatos por IA.', stack: ['NestJS', 'Prisma', 'React', 'DeepSeek'], shots: [...caps('iaa', 3), ...caps('iaa', 3, 'p')] },
+  { name: '3M Movilidad', year: '2025', org: 'MVP', tab: '3M · Mejora Movilidad Móvil', summary: 'Bienestar para adultos mayores: sesiones presenciales y online, ejercicios adaptados, progreso semanal y plan premium.', stack: ['React', 'Vite', 'Tailwind', 'Framer Motion', 'Radix UI'], shots: [...caps('3m', 5), ...caps('3m', 3, 'p')] },
+  { name: 'Tutoring System', year: '2025', org: 'Proyecto de Software, UAndes', tab: 'Simulación compartida — Atención en sucursal', summary: 'Simulador web de procesos estocásticos: armas el proceso como diagrama de flujo con generadores, filas, selectores y consumidores, lo simulas y compartes el resultado por link.', stack: ['React', 'TypeScript', 'React Flow', 'Redux', 'Express', 'Prisma'], shots: caps('its', 2) },
+  { name: 'Asistente de Clases', year: '2025', org: 'Proyecto de Software, UAndes', tab: 'Asistente de Clases — Mis clases', summary: 'El profesor sube su presentación, inicia la clase y la controla desde la web o un bot de Telegram, con ejemplos y preguntas generados por IA y un reporte al final.', stack: ['React', 'Firebase Auth', 'Socket.IO', 'Telegram Bot', 'IA'], shots: caps('asist', 3) },
+  { name: 'TravelBuddy', year: '2025', org: 'Aplicaciones Móviles, UAndes', tab: 'TravelBuddy — app móvil web', summary: 'Bitácora de viajes social: viajes, ubicaciones en mapa, posts, check-ins y compañeros de viaje, pensada como app móvil.', stack: ['React', 'MUI', 'Google Maps', 'Ruby on Rails'], shots: caps('travel', 5) },
+  { name: 'UrTurn App', year: '2025', org: 'Aplicaciones Móviles, UAndes', tab: 'UrTurn — viajes compartidos', summary: 'App de viajes compartidos para estudiantes: modo pasajero y conductor, búsqueda y solicitud de viajes, publicación de rutas, chat, historial y reseñas.', stack: ['React Native', 'Expo', 'Express', 'PostgreSQL', 'Prisma', 'Docker'], shots: caps('urapp', 7) },
+  { name: 'UrTurn Landing', year: '2026', org: 'Arquitectura de Software', tab: 'UrTurn — Tu turno, tu ruta', summary: 'Landing de un carpooling universitario, con escenas de scroll animadas.', stack: ['React', 'Vite', 'Tailwind'], shots: [...caps('urturn', 4), ...caps('urturn', 3, 'p')] },
+  { name: 'Rentar + Plus', year: '2026', org: 'Freelance', tab: 'Rentar + Plus — Lofts amoblados', summary: 'Sitio de lofts amoblados: galería, ubicación, unidades y reserva por fechas.', stack: ['Next.js', 'React', 'Tailwind'], shots: [...caps('rentar', 3), ...caps('rentar', 3, 'p')] },
+  { name: 'GymCheck', year: '2026', org: 'UX, UAndes', tab: 'GymCheck — Prototipo en Figma', summary: 'App de gimnasio para la UAndes: entrevistas, wireframes y prototipo en Figma.', stack: ['Figma', 'UX Research'], shots: ['caps/gym-d1.jpg', ...[2, 3, 4, 1, 5].map((i) => 'caps/gym-p' + i + '.jpg')] },
+  { name: 'PetitChefs', year: '2025', org: 'Diseño web', tab: 'PetitChefs — Escuela de Cocina para Niños', summary: 'Sitio para una escuela de cocina infantil: planes, horarios por nivel, matrícula y pagos, y galería.', stack: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'], shots: caps('petit', 3) },
+  { name: 'Detector de clickbait', year: '2026', org: 'IA Aplicada, UAndes', tab: 'clickbait · métricas por modelo', summary: 'Clasificador de titulares clickbait con fine-tuning de BETO, DistilBERT y RoBERTa, comparando métricas por época y explicando predicciones con SHAP.', stack: ['Python', 'Hugging Face', 'Transformers', 'SHAP'], shots: caps('click', 4) },
+  { name: 'Fuga de talento', year: '2026', org: 'Deep Learning, UAndes', tab: 'rrhh · evaluación en prueba', summary: 'Alerta temprana de renuncias: perceptrón sigmoidal con mapas de atributos polinomiales, regularización L2 y un umbral operacional elegido con la curva ROC.', stack: ['Python', 'NumPy', 'Regularización L2', 'ROC'], shots: caps('dl', 6) },
+  { name: 'ESP32 y TinyML', year: '2026', org: 'Sistemas Embebidos, UAndes', tab: 'esp32-s3 · roofline y benchmarks', summary: 'Benchmark de memoria del ESP32-S3 y cinco redes para detectar un identificador visual con la ESP32-CAM, comparadas en precisión, FPS, potencia y un roofline.', stack: ['ESP-IDF', 'C', 'Python', 'ESP32-CAM'], shots: caps('esp', 6) },
+  { name: 'Priorización de cobranza', year: '2026', org: 'Business Analytics, UAndes', tab: 'proyecto 3 · pre-procesamiento', summary: 'Pre-procesamiento de una lista de cobranza: limpieza, corrección de inconsistencias, variables nuevas y un índice para priorizar a qué clientes contactar.', stack: ['Python', 'pandas', 'seaborn'], shots: caps('bd3', 7) },
+  { name: 'Call center en SQL', year: '2026', org: 'Business Analytics, UAndes', tab: 'proyecto 2 · big data', summary: 'Análisis SQL de un call center: tasa de abandono por cola, entidades por conversación y fragmentación por flujo de atención.', stack: ['SQL', 'Amazon Athena', 'Python'], shots: caps('bd2', 4) },
+  { name: 'Modelado 3D', year: '2026', org: 'Modelado 3D, UAndes', tab: 'Fusion 360 · piezas paramétricas', summary: 'Piezas en Fusion 360 con bocetos restringidos, extrusiones, revoluciones y parámetros de usuario.', stack: ['Fusion 360', 'CAD'], shots: caps('f3d', 4), focus: 'center' },
+  { name: 'Book Reviews: Edge & Scale', year: '2026', org: 'Arquitectura de Software', tab: 'The StoreBook damned — Dashboard', summary: 'Plataforma de reseñas de libros con Django y MongoDB, escalada con Envoy (HTTPS), caché Redis, búsqueda en OpenSearch y tres réplicas en Kubernetes con pruebas de carga.', stack: ['Django', 'MongoDB', 'Envoy', 'Redis', 'OpenSearch', 'k8s'], shots: caps('books', 5) },
+  { name: 'CleverHome Platform', year: '2026', org: 'Arquitectura de Software', tab: 'CleverHome — CasaDemo', summary: 'Plataforma para hogares inteligentes: servidor TCP de hubs, API REST con Flask y JWT, interfaz web en React y una TUI, con simuladores en Docker.', stack: ['Python', 'Flask', 'React', 'PostgreSQL', 'Docker'], shots: [...caps('chweb', 3), ...caps('clever', 7)] },
+  { name: 'Memorice', year: '2024', org: 'PDP, UAndes', tab: 'Memorice', summary: 'Juego de memoria en el navegador: eliges 8, 16 o 32 cartas y cuenta tiempo y turnos.', stack: ['HTML', 'CSS', 'JavaScript'], shots: caps('memo', 2) },
+  { name: 'Flowers', year: '2025', org: 'Personal', tab: 'Sunflower Garden with Shooting Stars', summary: 'Jardín de flores animado con estrellas fugaces, hecho a mano en HTML, CSS y JavaScript.', stack: ['HTML', 'CSS', 'JavaScript'], shots: ['caps/flowers-d1.jpg'] },
+  { name: 'Juez automático', year: '2026', org: 'Ayudantía, Intro a Software', summary: 'Revisa entregas de Intro a Software: convenciones, juez y tests.', stack: ['Python', 'pytest'], file: 'juez_entregas.py' },
+  { name: 'TTPs ofensivos', year: '2025', org: 'Ciberseguridad', summary: 'Técnicas, tácticas y procedimientos ofensivos para Fundamentos de Ciberseguridad.', stack: ['Pentesting', 'MITRE ATT&CK'], file: 'ttps_ofensivos.py' },
+  { name: 'Red social de imágenes', year: null, org: 'Proyecto de curso', summary: 'Aplicación web social basada en imágenes, estilo Twitter.', stack: [], file: 'red-social.ts' },
+];
+const EMAIL = 'lbfuentes@miuandes.cl';
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+const img = (src, alt, lazy = true) => { const i = el('img'); i.src = src; i.alt = alt; if (lazy) i.loading = 'lazy'; i.decoding = 'async'; return i; };
+const hasShots = (p) => Boolean(p.shots && p.shots.length);
+const orgYear = (p) => (p.year ? p.org + ", '" + p.year.slice(2) : p.org);
+function meta(p) {
+  const m = el('p', 'meta');
+  m.append(el('b', null, orgYear(p)), document.createTextNode(' — ' + p.summary));
+  return m;
+}
+
+let toastTimer;
+function toast(msg) {
+  const t = $('[data-toast]');
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2400);
+}
+$$('[data-copy]').forEach((b) => b.addEventListener('click', () => {
+  if (!navigator.clipboard) { toast('Correo: ' + EMAIL); return; }
+  navigator.clipboard.writeText(EMAIL).then(() => toast('Correo copiado: ' + EMAIL)).catch(() => toast('Correo: ' + EMAIL));
+}));
+
+/* Hoja de detalle */
+let sheetReturn = null;
+function openSheet(p, from) {
+  const rail = $('[data-rail]');
+  rail.replaceChildren();
+  if (hasShots(p)) p.shots.forEach((src, k) => rail.append(img(src, p.name + ', imagen ' + (k + 1), false)));
+  else {
+    const r = el('div', 'readme');
+    r.append(el('code', null, p.file), el('b', null, p.name), el('p', null, p.summary));
+    rail.append(r);
+  }
+  $('[data-sheet-title]').textContent = p.name;
+  $('[data-sheet-meta]').textContent = orgYear(p);
+  $('[data-sheet-sum]').textContent = p.summary;
+  const st = $('[data-sheet-stack]');
+  st.replaceChildren(...p.stack.map((s) => el('span', null, s)));
+  sheetReturn = from;
+  $('[data-sheet]').hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('[data-sheet-close]').focus();
+}
+function closeSheet() {
+  $('[data-sheet]').hidden = true;
+  document.body.style.overflow = '';
+  if (sheetReturn) sheetReturn.focus();
+}
+$('[data-sheet-close]').addEventListener('click', closeSheet);
+$('[data-sheet]').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeSheet(); });
+addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('[data-sheet]').hidden) closeSheet(); });
+
+/* Tarjetas apiladas (proyectos con imágenes) */
+const cards = $('[data-cards]');
+PROJECTS.filter(hasShots).forEach((p, i) => {
+  const c = el('button', 'card');
+  c.type = 'button';
+  c.setAttribute('aria-label', p.name + ', ver ' + p.shots.length + ' imágenes');
+  const top = el('div', 'card-top');
+  const txt = el('div');
+  const h = el('h2', null, p.name);
+  h.append(el('span', 'tag', String(p.shots.length).padStart(2, '0')));
+  txt.append(h, meta(p));
+  top.append(txt, el('span', 'arrow', '→'));
+  const shot = el('div', 'shot');
+  const chrome = el('div', 'chrome');
+  chrome.append(el('i'), el('i'), el('i'), el('span', null, p.tab));
+  const cover = img(p.shots[0], p.name + ', captura principal', i > 1);
+  if (p.focus) cover.style.objectPosition = p.focus;
+  shot.append(chrome, cover);
+  c.append(top, shot);
+  c.addEventListener('click', () => openSheet(p, c));
+  cards.append(c);
+});
+
+/* Lista de proyectos sin imágenes */
+const more = $('[data-more]');
+PROJECTS.filter((p) => !hasShots(p)).forEach((p) => {
+  const b = el('button');
+  b.type = 'button';
+  const txt = el('div');
+  txt.append(el('h3', null, p.name), meta(p));
+  b.append(txt, el('span', 'arrow', '→'));
+  b.addEventListener('click', () => openSheet(p, b));
+  more.append(b);
+});
+
+/* Work / Info */
+function setTab(name) {
+  $$('.tabs [data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
+  $$('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== name; });
+  if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
+  window.scrollTo({ top: 0 });
+}
+$$('[data-tab]').forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
+if (location.hash === '#info') setTab('info');
+</script>
+</body>
 </html>
