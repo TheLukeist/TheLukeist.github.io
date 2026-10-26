@@ -225,9 +225,10 @@ const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls)
 const img = (src, alt, lazy = true) => { const i = el('img'); i.src = src; i.alt = alt; if (lazy) i.loading = 'lazy'; i.decoding = 'async'; return i; };
 const hasShots = (p) => Boolean(p.shots && p.shots.length);
 const orgYear = (p) => (p.year ? p.org + ", '" + p.year.slice(2) : p.org);
-function meta(p) {
+/* withYear=false cuando el año ya va en la etiqueta junto al título */
+function meta(p, withYear = true) {
   const m = el('p', 'meta');
-  m.append(el('b', null, orgYear(p)), document.createTextNode(' — ' + p.summary));
+  m.append(el('b', null, withYear ? orgYear(p) : p.org), document.createTextNode(' — ' + p.summary));
   return m;
 }
 
@@ -281,8 +282,8 @@ PROJECTS.filter(hasShots).forEach((p, i) => {
   const top = el('div', 'card-top');
   const txt = el('div');
   const h = el('h2', null, p.name);
-  h.append(el('span', 'tag', String(p.shots.length).padStart(2, '0')));
-  txt.append(h, meta(p));
+  h.append(el('span', 'tag', p.year || '—'));
+  txt.append(h, meta(p, false));
   top.append(txt, el('span', 'arrow', '→'));
   const shot = el('div', 'shot');
   const chrome = el('div', 'chrome');
